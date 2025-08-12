@@ -47,7 +47,7 @@ export const WidgetAuthScreen = () => {
             language: navigator.language,
             languages: navigator.languages?.join(","),
             platform: navigator.platform,
-            vender: navigator.vendor,
+            vendor: navigator.vendor,
             screenResolution: `${window.screen.width}x${window.screen.height}`,
             viewportSize: `${window.innerWidth}x${window.innerHeight}`,
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,

@@ -12,7 +12,7 @@ export default defineSchema({
             language: v.optional(v.string()),
             languages: v.optional(v.string()),
             platform: v.optional(v.string()),
-            vender: v.optional(v.string()),
+            vendor: v.optional(v.string()),
             screenResolution: v.optional(v.string()),
             viewportSize: v.optional(v.string()),
             timezone: v.optional(v.string()),
