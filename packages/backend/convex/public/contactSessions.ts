@@ -14,7 +14,7 @@ export const create = mutation({
             language: v.optional(v.string()),
             languages: v.optional(v.string()),
             platform: v.optional(v.string()),
-            vender: v.optional(v.string()),
+            vendor: v.optional(v.string()),
             screenResolution: v.optional(v.string()),
             viewportSize: v.optional(v.string()),
             timezone: v.optional(v.string()),
@@ -37,5 +37,24 @@ export const create = mutation({
         });
 
         return contactSessionId;
+    },
+});
+
+export const validate = mutation({
+    args: {
+        contactSessionId: v.id("contactSessions"),
+    },
+    handler: async (ctx, args) => {
+        const contactSession = await ctx.db.get(args.contactSessionId);
+
+        if (!contactSession) {
+            return { valid: false, reason: "Contact session not found" };
+        }
+
+        if (contactSession.expiresAt < Date.now()) {
+            return { valid: false, reason: "Contact session expired" };
+        }
+
+        return { valid: true, contactSession };
     },
 });
