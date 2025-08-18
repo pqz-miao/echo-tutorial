@@ -1,6 +1,5 @@
-import { Button } from "./button.js";
-
-import { cn } from "../lib/utils.js";
+import { Button } from "@workspace/ui/components/button";
+import { cn } from "@workspace/ui/lib/utils";
 
 interface Props {
     canLoadMore: boolean;
