@@ -4,9 +4,9 @@ import { useMemo } from "react";
 import { glass } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
 
-import { Avatar, AvatarImage } from "@workspace/ui/components/avatar.js";
+import { Avatar, AvatarImage } from "@workspace/ui/components/avatar";
 
-import { cn } from "@workspace/ui/lib/utils.js";
+import { cn } from "@workspace/ui/lib/utils";
 
 interface Props {
     seed: string;
