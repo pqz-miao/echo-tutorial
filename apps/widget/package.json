@@ -19,6 +19,7 @@
     "@workspace/math": "workspace:*",
     "@workspace/ui": "workspace:*",
     "convex": "^1.25.4",
+    "date-fns": "^4.1.0",
     "jotai": "^2.13.1",
     "lucide-react": "^0.475.0",
     "next": "^15.2.3",
