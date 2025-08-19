@@ -18,7 +18,7 @@ const statusConfig = {
     },
     escalated: {
         icon: ArrowUpIcon,
-        bgColor: "text-yellow-500",
+        bgColor: "bg-yellow-500",
     },
 } as const;
 
