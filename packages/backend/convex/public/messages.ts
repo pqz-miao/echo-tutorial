@@ -83,4 +83,3 @@ export const getMany = query({
         return paginated;
     },
 });
-
