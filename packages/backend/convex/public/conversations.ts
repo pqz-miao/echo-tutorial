@@ -1,6 +1,6 @@
 import { v, ConvexError } from "convex/values";
-import { MessageDoc, saveMessage } from "@convex-dev/agent";
 import { paginationOptsValidator } from "convex/server";
+import { MessageDoc, saveMessage } from "@convex-dev/agent";
 
 import { components } from "../_generated/api";
 import { mutation, query } from "../_generated/server";
