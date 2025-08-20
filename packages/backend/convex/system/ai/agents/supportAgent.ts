@@ -17,5 +17,5 @@ const deepseek = createDeepSeek({
 export const supportAgent = new Agent(components.agent, {
     // chat: openai("gpt-4o-mini"),
     chat: deepseek("deepseek-chat"),
-    instructions: "You are a customer support agent.",
+    instructions: `You are a customer support agent. Use "resolveConversation" tool when user expresses finalization of the conversation. Use "escalateConversation" tool when user expresses frustration, or requests a human explicitly.`,
 });

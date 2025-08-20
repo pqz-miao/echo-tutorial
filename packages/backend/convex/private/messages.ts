@@ -1,9 +1,11 @@
+import { generateText } from "ai";
 import { ConvexError, v } from "convex/values";
 import { saveMessage } from "@convex-dev/agent";
+import { createDeepSeek } from "@ai-sdk/deepseek";
 import { paginationOptsValidator } from "convex/server";
 
 import { components } from "../_generated/api";
-import { mutation, query } from "../_generated/server";
+import { mutation, query, action } from "../_generated/server";
 import { supportAgent } from "../system/ai/agents/supportAgent";
 
 export const create = mutation({
@@ -114,5 +116,51 @@ export const getMany = query({
         });
 
         return paginated;
+    },
+});
+
+export const enhanceResponse = action({
+    args: {
+        prompt: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new ConvexError({
+                code: "UNAUTHORIZED",
+                message: "Unauthorized",
+            });
+        }
+        
+        const orgId = identity.orgId as string;
+
+        if (!orgId) {
+            throw new ConvexError({
+                code: "UNAUTHORIZED",
+                message: "Organization not found",
+            });
+        }
+
+        const deepseek = createDeepSeek({
+            apiKey: process.env.DEEPSEEK_API_KEY,
+            baseURL: process.env.DEEPSEEK_BASE_URL,
+        });
+
+        const response = await generateText({
+            model: deepseek("deepseek-chat"),
+            messages: [
+                {
+                    role: "system",
+                    content: "Enhance the operator's message to be more professional, clear, and helpful while maintaining their intent and key information.",
+                },
+                {
+                    role: "user",
+                    content: args.prompt,
+                },
+            ],
+        });
+
+        return response.text;
     },
 });
